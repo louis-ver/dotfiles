@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Easier navigation: .., ..., ...., .....
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
+# Shortcuts
+alias dl="cd ~/Downloads"
+
+# Copy working directory
+alias cwd='pwd | tr -d "\r\n" | xclip -selection clipboard'

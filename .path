@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Go Path
+export GOPATH="${HOME}/.go"
+
+# Update Path
+export PATH="/usr/local/bin:${PATH}:/sbin"
+
+# Add Go Path
+export PATH="/usr/local/go/bin:${GOPATH}/bin:${PATH}"
+
+# Update cdpath
+export CDPATH="${CDPATH}:${GOPATH}/src/github.com:${GOPATH}/src/golang.org:${GOPATH}/src"
