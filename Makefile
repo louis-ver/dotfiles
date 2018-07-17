@@ -17,8 +17,7 @@ debian_bin: ## Installs the Debian bin directory files.
 
 .PHONY: dotfiles
 dotfiles: ## Installs the dotfiles.
-	for file in $(shell find $(CURDIR) -name ".*"); do \
+	for file in $(shell find $(CURDIR) -type f -name ".*"); do \
 		f=$$(basename $$file); \
 		ln -sfn $$file $(HOME)/$$f; \
 	done
-
