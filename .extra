@@ -2,11 +2,11 @@
 
 # Git Credentials
 
-GIT_AUTHOR_NAME="Louis-Olivier Guérin"
-GIT_COMMITER_NAME="$GIT_AUTHOR_NAME"
+export GIT_AUTHOR_NAME="Louis-Olivier Guérin"
+export GIT_COMMITER_NAME="$GIT_AUTHOR_NAME"
 git config --global user.name "$GIT_AUTHOR_NAME"
-GIT_AUTHOR_EMAIL="hi@louisolivier.com"
-GIT_COMMITER_EMAIL="$GIT_AUTHOR_EMAIL"
+export GIT_AUTHOR_EMAIL="hi@louisolivier.com"
+export GIT_COMMITER_EMAIL="$GIT_AUTHOR_EMAIL"
 git config --global user.email "$GIT_AUTHOR_EMAIL"
-GH_USER="louis-ver"
+export GH_USER="louis-ver"
 git config --global github.user "$GH_USER"
