@@ -3,8 +3,8 @@ set -e
 set -o pipefail
 
 if [ "$EUID" -ne 0 ]; then
-  echo "Please run as root."
-  exit 1
+    echo "Please run as root."
+    exit 1
 fi
 
 # Install Xcode Developer Tools
@@ -12,30 +12,30 @@ xcode-select --install
 
 # Install Homebrew
 if ! command -v brew > /dev/null; then
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 # Install all packages
 brew install go \
-  neovim \
+    neovim \
 	python \
-  shellcheck \
+    shellcheck \
 	zsh
 
 brew cask install 1password \
 	1password-cli \
-  alfred \
-  dash \
-  docker \
-  google-backup-and-sync \
-  iterm2 \
-  marked \
-  paw \
-  slack \
-  spectacle \
-  tower \
-  transmission \
-  vlc
+    alfred \
+    dash \
+    docker \
+    google-backup-and-sync \
+    iterm2 \
+    marked \
+    paw \
+    slack \
+    spectacle \
+    tower \
+    transmission \
+    vlc
 
 brew cleanup && brew cask cleanup
 
