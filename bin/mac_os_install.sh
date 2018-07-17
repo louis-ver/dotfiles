@@ -18,12 +18,12 @@ fi
 # Install all packages
 brew install go \
     neovim \
-	python \
+    python \
     shellcheck \
-	zsh
+    zsh
 
 brew cask install 1password \
-	1password-cli \
+    1password-cli \
     alfred \
     dash \
     docker \
