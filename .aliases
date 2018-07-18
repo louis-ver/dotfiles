@@ -8,6 +8,7 @@ alias .....="cd ../../../.."
 
 # Shortcuts
 alias dl="cd ~/Downloads"
+alias dev="cd ~/devel"
 
 # Copy working directory
-alias cwd='pwd | tr -d "\r\n" | xclip -selection clipboard'
+alias cwd='pwd | tr -d "\r\n" | pbcopy'
