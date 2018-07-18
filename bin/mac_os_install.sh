@@ -20,6 +20,7 @@ brew install go \
     neovim \
     python \
     shellcheck \
+    the_silver_searcher \
     zsh
 
 brew cask install 1password \
