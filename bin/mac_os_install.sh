@@ -23,6 +23,9 @@ brew install go \
     the_silver_searcher \
     zsh
 
+# Allows for download of old versions
+brew tap homebrew/cask-versions
+
 brew cask install 1password \
     1password-cli \
     alfred \
@@ -34,7 +37,7 @@ brew cask install 1password \
     paw \
     slack \
     spectacle \
-    tower \
+    tower2 \
     transmission \
     vlc
 
