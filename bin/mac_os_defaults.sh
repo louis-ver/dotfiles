@@ -71,6 +71,9 @@ defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 # Show all filename extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
+# Show status bar
+defaults write com.apple.finder ShowStatusBar -bool true
+
 # Show hidden files
 defaults write com.apple.finder AppleShowAllFiles YES
 
@@ -105,14 +108,15 @@ defaults write com.apple.dock show-process-indicators -bool true
 # Don’t animate opening applications from the Dock
 defaults write com.apple.dock launchanim -bool false
 
+# Please the Dock on the left
+defaults write com.apple.dock orientation left
+
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
 
 # Enable AirDrop over Ethernet and on unsupported Macs running Lion
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 
-# Show status bar
-defaults write com.apple.finder ShowStatusBar -bool true
 
 ###############################################################################
 # Safari & WebKit                                                             #
