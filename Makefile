@@ -3,7 +3,7 @@ all: bin dotfiles
 
 .PHONY: bin
 mac_os_bin: ## Installs the macOS bin directory files.
-	for file in $(shell find $(CURDIR)/bin -type f -name "mac_os_*"); do \
+	for file in $(shell find $(CURDIR)/bin -type f); do \
 		f=$$(basename $$file); \
 		sudo ln -sf $$file /usr/local/bin/$$f; \
 	done

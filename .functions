@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Create a new directory and enter it
+mkd(){
+    mkdir -p "$@"
+    cd "$@" || exit
+}
+
+# `o` with no arguments opens the current directory, otherwise opens the given
+# location
+o(){
+    if [ $# -eq 0 ]; then
+        open . > /dev/null 2>&1
+    else
+        open "$@" > /dev/null 2>&1
+    fi
+}
+
+# Reloads .bash_profile
+rl(){
+    # shellcheck source=/dev/null
+    source "${HOME}/.bash_profile"
+}
+

@@ -9,6 +9,9 @@ alias .....="cd ../../../.."
 # Shortcuts
 alias dl="cd ~/Downloads"
 alias dev="cd ~/devel"
+alias dircolors="gdircolors"
+alias ls="gls --color=auto"
+alias l="ls -la"
 
 # Copy working directory
 alias cwd='pwd | tr -d "\r\n" | pbcopy'

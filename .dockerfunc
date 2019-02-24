@@ -1,0 +1,101 @@
+#!/bin/bash
+#
+# Bash wrappers for docker run commands
+
+export DOCKER_REPO_PREFIX=louisolivier
+
+dbuild(){
+    local project_name
+    project_name=$(basename "$PWD")
+    docker build "$PWD" -t "${DOCKER_REPO_PREFIX}/${project_name}:latest"
+}
+
+dcleanup(){
+    local stopped_containers
+    mapfile -t stopped_containers < <(docker ps -aq 2>/dev/null)
+    docker rm "${stopped_containers[@]}" 2>/dev/null
+    local images
+    mapfile -t images < <(docker images --filter dangling=true -q 2>/dev/null)
+    docker rmi "${images[@]}" 2>/dev/null
+}
+
+avn(){
+    docker run -it --rm \
+        -v "${HOME}/.aiven:/root/.aiven" \
+        --name avn \
+        ${DOCKER_REPO_PREFIX}/avn "$@"
+}
+
+aws(){
+    docker run -it --rm \
+        -v "${HOME}/.aws:/root/.aws" \
+        --name aws \
+        ${DOCKER_REPO_PREFIX}/aws-cli "$@"
+}
+
+htop(){
+    docker run -it --rm \
+        --pid host \
+        --net none \
+        --name htop \
+        ${DOCKER_REPO_PREFIX}/htop
+}
+
+jira(){
+    docker run -it --rm \
+        --name jira \
+        -v "${HOME}/.jira.d:/root/.jira.d" \
+        ${DOCKER_REPO_PREFIX}/go-jira "$@"
+}
+
+kafkacat(){
+    docker run -it --rm \
+        -v "${HOME}/.kafkacat:/root/.kafkacat" \
+        --name kafkacat \
+        ${DOCKER_REPO_PREFIX}/kafkacat "$@"
+}
+
+kubectl(){
+    docker run -it --rm \
+        -v "${HOME}/.kube:/root/.kube" \
+        --name kubectl \
+        ${DOCKER_REPO_PREFIX}/kubectl "$@"
+}
+
+netcat(){
+    docker run -it --rm \
+        --net host \
+        ${DOCKER_REPO_PREFIX}/netcat "$@"
+}
+
+picker(){
+    docker run -it --rm \
+        --name fzf-tmux \
+        ${DOCKER_REPO_PREFIX}/fzf-tmux "$@"
+}
+
+plex(){
+    docker run \
+        -d \
+        -h 10.0.1.12 \
+        --name plex \
+        -p 32400:32400/tcp \
+        -p 3005:3005/tcp \
+        -p 8324:8324/tcp \
+        -p 32469:32469/tcp \
+        -p 1900:1900/udp \
+        -p 32410:32410/udp \
+        -p 32412:32412/udp \
+        -p 32413:32413/udp \
+        -p 32414:32414/udp \
+        -e TZ="America/Montreal" \
+        -e PLEX_CLAIM="${PLEX_CLAIM}" \
+        -e ADVERTISE_IP="10.0.1.12:32400" \
+        -v /Volumes/home0/plex/database:/config \
+        -v /Volumes/home0/plex/data:/data \
+        -v /Volumes/home0/plex/temp/transcode:/transcode \
+        --add-host mf.svc.nhl.com:107.6.182.249 \
+        --add-host mlb-ws-mf.media.mlb.com:107.6.182.249 \
+        --add-host playback.svcs.mlb.com:107.6.182.249 \
+        plexinc/pms-docker
+}
