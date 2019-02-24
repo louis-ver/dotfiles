@@ -12,6 +12,7 @@ alias dev="cd ~/devel"
 alias dircolors="gdircolors"
 alias ls="gls --color=auto"
 alias l="ls -la"
+alias v="nvim"
 
 # Copy working directory
 alias cwd='pwd | tr -d "\r\n" | pbcopy'

@@ -17,8 +17,7 @@ o(){
 }
 
 # Reloads .bash_profile
-rl(){
+reload(){
     # shellcheck source=/dev/null
     source "${HOME}/.bash_profile"
 }
-

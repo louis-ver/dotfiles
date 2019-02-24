@@ -38,14 +38,6 @@ brew cask install 1password \
 
 brew cleanup && brew cask cleanup
 
-# Install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-# Make zsh the default shell
-zsh_path="$(command -v zsh)"
-echo "$zsh_path" >> /etc/shells
-chsh -s "$zsh_path"
-
 # Configure vim and get all related packages
 pip3 install neovim --upgrade
 cd "$HOME" && git clone https://github.com/louis-ver/.vim.git
