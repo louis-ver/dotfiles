@@ -12,6 +12,15 @@ fi
 
 # Install all packages
 brew install go \
+    coreutils \
+    findutils \
+    gnu-tar \
+    gnu-sed \
+    gawk \
+    gnutls \
+    gnu-indent \
+    gnu-getopt \
+    grep \
     neovim \
     python \
     shellcheck \

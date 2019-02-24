@@ -9,10 +9,46 @@ alias .....="cd ../../../.."
 # Shortcuts
 alias dl="cd ~/Downloads"
 alias dev="cd ~/devel"
-alias dircolors="gdircolors"
-alias ls="gls --color=auto"
 alias l="ls -la"
 alias v="nvim"
 
 # Copy working directory
 alias cwd='pwd | tr -d "\r\n" | pbcopy'
+
+# Use gnu core utils if on macOS
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    alias base32="gbase32"
+    alias base64="gbase64"
+    alias basename="gbasename"
+    alias cat="gcat"
+    alias chmod="gchmod"
+    alias chown="gchown"
+    alias chroot="gchroot"
+    alias date="gdate"
+    alias dir="gdir"
+    alias dircolors="gdircolors"
+    alias dirname="gdirname"
+    alias env="genv"
+    alias find="gfind"
+    alias grep="ggrep"
+    alias indent="gindent"
+    alias ln="gln"
+    alias ls="gls --color=auto"
+    alias md5sum="gmd5sum"
+    alias mkdir="gmkdir"
+    alias mv="gmv"
+    alias printf="gprintf"
+    alias readlink="greadlink"
+    alias realpath="grealpath"
+    alias sed="gsed"
+    alias tail="gtail"
+    alias tar="gtar"
+    alias tee="gtee"
+    alias test="gtest"
+    alias touch="gtouch"
+    alias uptime="guptime"
+    alias who="gwho"
+    alias whoami="gwhoami"
+    alias yes="gyes"
+fi
+
