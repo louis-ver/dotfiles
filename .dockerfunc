@@ -77,9 +77,15 @@ kubectl(){
         ${DOCKER_REPO_PREFIX}/kubectl "$@"
 }
 
+mkpasswd(){
+    docker run -it --rm \
+        --name mkpasswd \
+        ${DOCKER_REPO_PREFIX}/mkpasswd "$@"
+}
 telnet(){
     docker run -it --rm \
         --net host \
+        --name telnet \
         ${DOCKER_REPO_PREFIX}/telnet "$@"
 }
 
