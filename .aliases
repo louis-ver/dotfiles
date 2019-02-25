@@ -7,16 +7,17 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
 # Shortcuts
-alias dl="cd ~/Downloads"
-alias dev="cd ~/devel"
 alias l="ls -la"
 alias v="nvim"
 
-# Copy working directory
-alias cwd='pwd | tr -d "\r\n" | pbcopy'
 
 # Use gnu core utils if on macOS
 if [[ "$OSTYPE" == "darwin"* ]]; then
+    # Copy working directory
+    alias cwd='pwd | tr -d "\r\n" | pbcopy'
+
+    alias dl="cd ~/Downloads"
+    alias dev="cd ~/devel"
     alias base32="gbase32"
     alias base64="gbase64"
     alias basename="gbasename"

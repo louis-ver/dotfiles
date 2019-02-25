@@ -99,3 +99,9 @@ plex(){
         --add-host playback.svcs.mlb.com:107.6.182.249 \
         plexinc/pms-docker
 }
+
+weather(){
+    docker run -it --rm \
+        --name weather \
+        ${DOCKER_REPO_PREFIX}/weather "$@"
+}
