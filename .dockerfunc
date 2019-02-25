@@ -24,6 +24,7 @@ ansible(){
     docker run -it --rm \
         --name ansible \
         -v "${HOME}/.ansible:/etc/ansible" \
+        -v "${HOME}/.ssh:/root/.ssh:ro" \
         ${DOCKER_REPO_PREFIX}/ansible "$@"
 }
 avn(){
@@ -76,10 +77,10 @@ kubectl(){
         ${DOCKER_REPO_PREFIX}/kubectl "$@"
 }
 
-netcat(){
+telnet(){
     docker run -it --rm \
         --net host \
-        ${DOCKER_REPO_PREFIX}/netcat "$@"
+        ${DOCKER_REPO_PREFIX}/telnet "$@"
 }
 
 plex(){
