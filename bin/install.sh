@@ -13,7 +13,10 @@ fi
 # Install all packages
 brew install go \
     coreutils \
+    fzf \
+    tmux \
     findutils \
+    git \
     gnu-tar \
     gnu-sed \
     gawk \

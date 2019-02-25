@@ -41,13 +41,6 @@ aws(){
         ${DOCKER_REPO_PREFIX}/aws-cli "$@"
 }
 
-fzf_tmux(){
-    docker run -it --rm \
-        --name fzf-tmux \
-        ${DOCKER_REPO_PREFIX}/fzf-tmux "$@"
-}
-alias fzf-tmux="fzf_tmux"
-
 htop(){
     docker run -it --rm \
         --pid host \
