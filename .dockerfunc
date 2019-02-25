@@ -4,6 +4,7 @@
 
 export DOCKER_REPO_PREFIX=louisolivier
 
+# Helper functions
 dbuild(){
     local project_name
     project_name=$(basename "$PWD")
@@ -19,6 +20,12 @@ dcleanup(){
     docker rmi "${images[@]}" 2>/dev/null
 }
 
+ansible(){
+    docker run -it --rm \
+        --name ansible \
+        -v "${HOME}/.ansible:/etc/ansible" \
+        ${DOCKER_REPO_PREFIX}/ansible "$@"
+}
 avn(){
     docker run -it --rm \
         -v "${HOME}/.aiven:/root/.aiven" \
@@ -32,6 +39,13 @@ aws(){
         --name aws \
         ${DOCKER_REPO_PREFIX}/aws-cli "$@"
 }
+
+fzf_tmux(){
+    docker run -it --rm \
+        --name fzf-tmux \
+        ${DOCKER_REPO_PREFIX}/fzf-tmux "$@"
+}
+alias fzf-tmux="fzf_tmux"
 
 htop(){
     docker run -it --rm \
@@ -66,12 +80,6 @@ netcat(){
     docker run -it --rm \
         --net host \
         ${DOCKER_REPO_PREFIX}/netcat "$@"
-}
-
-picker(){
-    docker run -it --rm \
-        --name fzf-tmux \
-        ${DOCKER_REPO_PREFIX}/fzf-tmux "$@"
 }
 
 plex(){
