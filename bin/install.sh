@@ -2,9 +2,6 @@
 set -e
 set -o pipefail
 
-# Install Xcode Developer Tools
-xcode-select --install
-
 # Install Homebrew
 if ! command -v brew > /dev/null; then
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -47,8 +44,6 @@ brew cask install 1password \
     tower2 \
     transmission \
     vlc
-
-brew cleanup && brew cask cleanup
 
 # Configure vim and get all related packages
 pip3 install neovim --upgrade
