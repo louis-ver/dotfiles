@@ -20,27 +20,6 @@ dcleanup(){
     docker rmi "${images[@]}" 2>/dev/null
 }
 
-ansible(){
-    docker run -it --rm \
-        --name ansible \
-        -v "${HOME}/.ansible:/etc/ansible" \
-        -v "${HOME}/.ssh:/root/.ssh:ro" \
-        ${DOCKER_REPO_PREFIX}/ansible "$@"
-}
-avn(){
-    docker run -it --rm \
-        -v "${HOME}/.aiven:/root/.aiven" \
-        --name avn \
-        ${DOCKER_REPO_PREFIX}/avn "$@"
-}
-
-aws(){
-    docker run -it --rm \
-        -v "${HOME}/.aws:/root/.aws" \
-        --name aws \
-        ${DOCKER_REPO_PREFIX}/aws-cli "$@"
-}
-
 htop(){
     docker run -it --rm \
         --pid host \
@@ -54,20 +33,6 @@ jira(){
         --name jira \
         -v "${HOME}/.jira.d:/root/.jira.d" \
         ${DOCKER_REPO_PREFIX}/go-jira "$@"
-}
-
-kafkacat(){
-    docker run -it --rm \
-        -v "${HOME}/.kafkacat:/root/.kafkacat" \
-        --name kafkacat \
-        ${DOCKER_REPO_PREFIX}/kafkacat "$@"
-}
-
-kubectl(){
-    docker run -it --rm \
-        -v "${HOME}/.kube:/root/.kube" \
-        --name kubectl \
-        ${DOCKER_REPO_PREFIX}/kubectl "$@"
 }
 
 mkpasswd(){

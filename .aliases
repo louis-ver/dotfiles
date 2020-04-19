@@ -9,7 +9,9 @@ alias .....="cd ../../../.."
 # Shortcuts
 alias l="ls -la"
 alias v="nvim"
-
+alias k="kubectl"
+alias kctx="kubectx"
+alias kns="kubens"
 
 # Use gnu core utils if on macOS
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -17,7 +19,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     alias cwd='pwd | tr -d "\r\n" | pbcopy'
 
     alias dl="cd ~/Downloads"
-    alias dev="cd ~/devel"
     alias base32="gbase32"
     alias base64="gbase64"
     alias basename="gbasename"
@@ -38,7 +39,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     alias md5sum="gmd5sum"
     alias mkdir="gmkdir"
     alias mv="gmv"
-    alias printf="gprintf"
     alias readlink="greadlink"
     alias realpath="grealpath"
     alias sed="gsed"

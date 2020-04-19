@@ -8,3 +8,6 @@ for file in ~/.{path,exports,aliases,extra,dockerfunc,functions}; do
   fi
 done
 unset file
+
+# Enable bash completion
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"

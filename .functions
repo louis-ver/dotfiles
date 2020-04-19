@@ -24,8 +24,105 @@ o(){
     fi
 }
 
-# Reloads .bash_profile
-reload(){
-    # shellcheck source=/dev/null
-    source "${HOME}/.bash_profile"
+task(){
+    local task_id=$1
+    open "https://fansent.atlassian.net/browse/${task_id}"
 }
+
+mc(){
+    mvn clean install -DskipTests
+}
+
+kp(){
+    argument="$1"
+    if [ "$argument" = "-f" ]; then
+      while true; do
+          output=$(kubectl get pods)
+          clear
+          echo "$output"
+          sleep 10
+      done
+    else
+      kubectl get pods
+    fi
+}
+
+kd(){
+    service_name="$1"
+    if [ -z "$service_name" ]; then
+        echo "Must specify a pod to describe. ie kd cart-service"
+        return
+    fi
+    service=$(kubectl get pods --no-headers | awk '{print $1}' | grep "$1" | head -1)
+    kubectl describe pods "$service"
+}
+
+kget(){
+  resources=$(kubectl api-resources --verbs=get --no-headers=true | awk '{print $1}')
+  selection=$(echo "$resources" | fzf-tmux)
+  if [ "$1" = "--one" ]; then
+    shift
+    resource=$(kubectl get "$selection" --no-headers=true | fzf-tmux | awk '{print $1}')
+    if [ -z "$resource" ]; then
+      echo "No selection was made. Exiting."
+      return
+    fi
+
+    kubectl get "${selection}/${resource}" "$@" -o yaml
+  else
+    kubectl get "$selection" "$@"
+  fi
+}
+
+refresh(){
+  # shellcheck source=/dev/null
+  source "${HOME}/.bashrc"
+}
+
+kops(){
+  context=$(kubectl config current-context)
+  if [ "$context" = "kube.golo.io" ]; then
+    kops_state_store="s3://kube-state-store-ca-central-1"
+  elif [ "$context" = "kube-test.golo.io" ]; then
+    kops_state_store="s3://kube-state-store-test-ca-central-1"
+  fi
+
+  /usr/local/bin/kops --state="$kops_state_store" "$@"
+}
+
+repos(){
+  cd "${HOME}/devel/golo" || return
+}
+
+delete_confluent_schema(){
+  if [ -z "$1" ]; then
+    echo "Missing Topic name. Usage: delete_confluent_schema ORDER_UPDATED"
+    return
+  fi
+  ccloud schema-registry schema delete --subject="$1-value" --version=all
+  ccloud schema-registry schema delete --subject="$1-key" --version=all
+}
+
+ssh_dev(){
+  fans_ssh.py -p default -r us-east-1 "$1"
+}
+alias ssh-dev=ssh_dev
+
+aws_ecr_login(){
+  # shellcheck disable=SC2091
+  $(aws ecr get-login --no-include-email --region ca-central-1)
+}
+alias ecr-login=aws_ecr_login
+
+switch_namespace(){
+  kubectl config set-context --current --namespace="$1"
+}
+
+dev(){
+  switch_namespace "dev"
+}
+
+qa(){
+  switch_namespace "qa"
+}
+
